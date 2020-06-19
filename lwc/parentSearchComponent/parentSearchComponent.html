@@ -1,0 +1,44 @@
+<template>
+
+    <div class="slds-grid slds-wrap ">
+        <div class="slds-col slds-size_1-of-4 slds-p-around_small">
+            <span>
+                <div class="slds-box">
+                    <lightning-input name="Name" onchange={handleChange} label="Name"></lightning-input>
+                    <br />
+                    <lightning-input name="Records" onchange={handleChange} label="Records #"></lightning-input>
+                    <br />
+                    <lightning-button variant="brand" label="Search" title="Search" onclick={handleClick}
+                        class="slds-m-left_x-small"></lightning-button>
+                </div>
+            </span>
+        </div>
+        <div class="slds-col slds-size_3-of-4 slds-p-around_small">
+            <span>
+                <div class="slds-box">
+                    
+                    <lightning-input label="Enter value" name="filterValue" placeholder="Filter Text"
+                        onchange={handleChange}></lightning-input><br />
+                    <lightning-button variant="brand" label="Filter Data" title="Filter Data" onclick={handleFilter}
+                        class="slds-m-left_x-small"></lightning-button>
+                    <div>
+    
+                        <template if:true={copyOfAccountRecords}>
+                            <!-- Calling Child Component -->
+                            <div class="slds-grid slds-wrap">
+                                <template for:each={copyOfAccountRecords} for:item="item">
+                                    <div class="slds-col slds-size_1-of-3 " key={item.Id}>
+                                        <c-child-search-component-two account-record={item}></c-child-search-component-two>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+                    </div>
+                    
+                </div>
+            </span>
+        </div>
+    </div>
+
+
+</template>
